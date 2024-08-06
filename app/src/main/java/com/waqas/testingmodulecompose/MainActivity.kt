@@ -11,8 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.waqas.core.navigation.Route
 import com.waqas.onboarding_presentation.WelcomeScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
+import com.waqas.testingmodulecompose.util.navigate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,13 +26,40 @@ class MainActivity : ComponentActivity() {
 //        enableEdgeToEdge()
         setContent {
             TempComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WelcomeScreen()
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = Route.WELCOME) {
+                    composable(Route.WELCOME) {
+                        WelcomeScreen (onNavigate = navController::navigate)
+                    }
+                    composable(Route.ACTIVITY) {
+
+                    }
+                    composable(Route.AGE) {
+
+                    }
+                    composable(Route.GENDER) {
+
+                    }
+                    composable(Route.HEIGHT) {
+
+                    }
+                    composable(Route.WEIGHT) {
+
+                    }
+                    composable(Route.GOAL) {
+
+                    }
+                    composable(Route.NUTRIENT_GOAL) {
+
+                    }
+                    composable(Route.SEARCH) {
+
+                    }
+                    composable(Route.TRACKER_OVERVIEW) {
+
+                    }
                 }
+
             }
         }
     }
