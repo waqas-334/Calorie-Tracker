@@ -5,7 +5,7 @@ apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdk ProjectConfig.compileSdk
-    namespace "com.waqas.core"
+    namespace "com.waqas.core.compose"
 
     defaultConfig {
         minSdk ProjectConfig.minSdk

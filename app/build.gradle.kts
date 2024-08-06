@@ -61,6 +61,7 @@ dependencies {
 //    implementation(libs.androidx.material3.android)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.coreUi))
     implementation(project(Modules.onboardingPresentation))
     implementation(project(Modules.onboardingDomain))
     implementation(project(Modules.trackerData))
