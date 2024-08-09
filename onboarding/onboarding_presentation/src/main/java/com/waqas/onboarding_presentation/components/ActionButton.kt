@@ -25,7 +25,7 @@ fun ActionButton(
 
     Button(
         onClick = onClick,
-        modifier = Modifier,
+        modifier = modifier,
         enabled = isEnabled,
         shape = RoundedCornerShape(100.dp)
     ) {
