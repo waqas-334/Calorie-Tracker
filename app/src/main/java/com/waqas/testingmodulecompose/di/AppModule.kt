@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.waqas.core.data.preferences.DefaultPreferences
 import com.waqas.core.domain.preferences.Preferences
+import com.waqas.core.domain.usecase.FilterOutDigits
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +28,14 @@ class AppModule {
     fun providePreferences(sharedPreferences: SharedPreferences): Preferences {
         return DefaultPreferences(sharedPreferences)
     }
+
+
+    @Provides
+    @Singleton
+    fun provideFilterOutDigitsUseCase(): FilterOutDigits {
+        return FilterOutDigits()
+    }
+
 
 
 }
