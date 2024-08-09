@@ -19,6 +19,8 @@ import com.waqas.core.navigation.Route
 import com.waqas.onboarding_presentation.WelcomeScreen
 import com.waqas.onboarding_presentation.age.AgeScreen
 import com.waqas.onboarding_presentation.gender.GenderScreen
+import com.waqas.onboarding_presentation.height.HeightScreen
+import com.waqas.onboarding_presentation.weight.WeightScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
 import com.waqas.testingmodulecompose.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,16 +48,23 @@ class MainActivity : ComponentActivity() {
                         composable(Route.AGE) {
                             AgeScreen(
                                 scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate)
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.GENDER) {
                             GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.HEIGHT) {
-
+                            HeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.WEIGHT) {
-
+                            WeightScreen(
+                                onNavigate = navController::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
                         composable(Route.GOAL) {
 
