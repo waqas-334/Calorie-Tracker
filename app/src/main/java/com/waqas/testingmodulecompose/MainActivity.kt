@@ -22,6 +22,7 @@ import com.waqas.onboarding_presentation.age.AgeScreen
 import com.waqas.onboarding_presentation.gender.GenderScreen
 import com.waqas.onboarding_presentation.goal.GoalScreen
 import com.waqas.onboarding_presentation.height.HeightScreen
+import com.waqas.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.waqas.onboarding_presentation.weight.WeightScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
 import com.waqas.testingmodulecompose.util.navigate
@@ -73,7 +74,10 @@ class MainActivity : ComponentActivity() {
                             GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.NUTRIENT_GOAL) {
-
+                            NutrientGoalScreen(
+                                onNavigate = navController::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
                         composable(Route.SEARCH) {
 
