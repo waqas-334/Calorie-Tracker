@@ -17,8 +17,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.waqas.core.navigation.Route
 import com.waqas.onboarding_presentation.WelcomeScreen
+import com.waqas.onboarding_presentation.activity.ActivityLevelScreen
 import com.waqas.onboarding_presentation.age.AgeScreen
 import com.waqas.onboarding_presentation.gender.GenderScreen
+import com.waqas.onboarding_presentation.goal.GoalScreen
 import com.waqas.onboarding_presentation.height.HeightScreen
 import com.waqas.onboarding_presentation.weight.WeightScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
@@ -44,6 +46,7 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Route.ACTIVITY) {
                             innerPadding.calculateTopPadding()
+                            ActivityLevelScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.AGE) {
                             AgeScreen(
@@ -67,7 +70,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Route.GOAL) {
-
+                            GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.NUTRIENT_GOAL) {
 
