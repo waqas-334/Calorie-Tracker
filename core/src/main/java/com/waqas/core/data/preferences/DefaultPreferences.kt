@@ -14,6 +14,7 @@ import com.waqas.core.domain.preferences.Preferences.Companion.KEY_GENDER
 import com.waqas.core.domain.preferences.Preferences.Companion.KEY_GOAL_TYPE
 import com.waqas.core.domain.preferences.Preferences.Companion.KEY_HEIGHT
 import com.waqas.core.domain.preferences.Preferences.Companion.KEY_PROTEIN_RATIO
+import com.waqas.core.domain.preferences.Preferences.Companion.KEY_SHOULD_SHOW_ON_BOARDING
 import com.waqas.core.domain.preferences.Preferences.Companion.KEY_WEIGHT
 
 class DefaultPreferences(
@@ -79,5 +80,13 @@ class DefaultPreferences(
 
 
         )
+    }
+
+    override fun saveShouldShowOnboarding(value: Boolean) {
+        sharedPref.edit().putBoolean(KEY_SHOULD_SHOW_ON_BOARDING, value).apply()
+    }
+
+    override fun loadShouldShowOnboarding(): Boolean {
+        return sharedPref.getBoolean(KEY_SHOULD_SHOW_ON_BOARDING, true)
     }
 }
