@@ -1,6 +1,9 @@
 package com.waqas.tracker_presentation.tracker_overview
 
+import android.widget.Space
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -9,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.waqas.core.util.UiEvent
 import com.waqas.core_ui.LocalSpacing
+import com.waqas.tracker_presentation.tracker_overview.components.DaySelector
 import com.waqas.tracker_presentation.tracker_overview.components.NutrientsHeader
 
 @Composable
@@ -28,7 +32,19 @@ fun TrackerOverviewScreen(
     ) {
         item {
             NutrientsHeader(state = state)
-
+            DaySelector(
+                date = viewModel.state.date,
+                onPreviousDayClick = {
+                    viewModel.onEvent(TrackerOverviewEvent.OnPreviousDayEvent)
+                },
+                onNextDayClick = {
+                    viewModel.onEvent(TrackerOverviewEvent.OnNextDayClick)
+                },
+                modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = spacing.spaceMedium)
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
         }
     }
 
