@@ -26,6 +26,7 @@ import com.waqas.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.waqas.onboarding_presentation.weight.WeightScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
 import com.waqas.testingmodulecompose.util.navigate
+import com.waqas.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -83,7 +84,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                         composable(Route.TRACKER_OVERVIEW) {
-
+                            TrackerOverviewScreen(onNavigation = navController::navigate)
                         }
                     }
                 }

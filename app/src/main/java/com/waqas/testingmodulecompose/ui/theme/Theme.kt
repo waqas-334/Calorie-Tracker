@@ -11,6 +11,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
 import com.waqas.core_ui.Dimensions
 import com.waqas.core_ui.LocalSpacing
+import com.waqas.core_ui.Pink40
+import com.waqas.core_ui.Pink80
+import com.waqas.core_ui.Purple40
+import com.waqas.core_ui.Purple80
+import com.waqas.core_ui.PurpleGrey40
+import com.waqas.core_ui.PurpleGrey80
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
