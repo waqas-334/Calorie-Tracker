@@ -8,7 +8,7 @@ object Compose {
 
 
 
-    const val ui = "androidx.compose.ui:ui:$composeVersion"
+    const val ui = "androidx.compose.ui:ui:1.6.8"
     const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
     const val compiler = "androidx.compose.compiler:compiler:$composeCompilerVersion"
