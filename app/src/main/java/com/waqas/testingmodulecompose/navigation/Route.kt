@@ -1,4 +1,4 @@
-package com.waqas.core.navigation
+package com.waqas.testingmodulecompose.navigation
 
 object Route {
 

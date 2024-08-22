@@ -22,17 +22,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.waqas.core.R
 import com.waqas.core.domain.model.ActivityLevel
-import com.waqas.core.domain.model.Gender
 import com.waqas.core.util.UiEvent
 import com.waqas.core_ui.LocalSpacing
 import com.waqas.onboarding_presentation.components.ActionButton
 import com.waqas.onboarding_presentation.components.SelectableButton
-import java.sql.Time
 
 private const val TAG = "ActivityLevelScreen"
 @Composable
 fun ActivityLevelScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNextClick: () -> Unit,
     viewModel: ActivityViewModel = hiltViewModel(),
 ) {
     val spacing = LocalSpacing.current
@@ -48,7 +46,7 @@ fun ActivityLevelScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 else -> Unit
             }
         }

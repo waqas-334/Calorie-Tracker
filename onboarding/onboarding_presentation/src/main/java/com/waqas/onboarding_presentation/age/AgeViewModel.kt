@@ -5,10 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.waqas.core.compose.R
 import com.waqas.core.domain.preferences.Preferences
 import com.waqas.core.domain.usecase.FilterOutDigits
-import com.waqas.core.navigation.Route
 import com.waqas.core.util.UiEvent
 import com.waqas.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,7 +41,7 @@ class AgeViewModel @Inject constructor(
             }
 
             preferences.saveAge(ageDigit)
-            _uiEvent.send(UiEvent.Navigate(Route.HEIGHT))
+            _uiEvent.send(UiEvent.Success)
 
 
         }

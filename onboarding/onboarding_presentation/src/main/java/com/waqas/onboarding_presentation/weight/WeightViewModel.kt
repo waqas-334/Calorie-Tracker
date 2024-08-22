@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.waqas.core.domain.preferences.Preferences
-import com.waqas.core.navigation.Route
 import com.waqas.core.util.UiEvent
 import com.waqas.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,7 +39,7 @@ class WeightViewModel @Inject constructor(
             }
 
             preferences.saveWeight(weightNumber)
-            _uiEvent.send(UiEvent.Navigate(Route.ACTIVITY))
+            _uiEvent.send(UiEvent.Success)
 
 
         }

@@ -20,7 +20,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.waqas.core.R
-import com.waqas.core.domain.model.ActivityLevel
 import com.waqas.core.domain.model.GoalType
 import com.waqas.core.util.UiEvent
 import com.waqas.core_ui.LocalSpacing
@@ -28,9 +27,10 @@ import com.waqas.onboarding_presentation.components.ActionButton
 import com.waqas.onboarding_presentation.components.SelectableButton
 
 private const val TAG = "ActivityLevelScreen"
+
 @Composable
 fun GoalScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNextClick: () -> Unit,
     viewModel: GoalViewModel = hiltViewModel(),
 ) {
     val spacing = LocalSpacing.current
@@ -46,7 +46,7 @@ fun GoalScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNextClick()
                 else -> Unit
             }
         }

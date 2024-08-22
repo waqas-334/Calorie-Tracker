@@ -12,13 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.waqas.core.domain.preferences.Preferences
-import com.waqas.core.navigation.Route
+import com.waqas.testingmodulecompose.navigation.Route
 import com.waqas.onboarding_presentation.WelcomeScreen
 import com.waqas.onboarding_presentation.activity.ActivityLevelScreen
 import com.waqas.onboarding_presentation.age.AgeScreen
@@ -28,7 +27,6 @@ import com.waqas.onboarding_presentation.height.HeightScreen
 import com.waqas.onboarding_presentation.nutrient_goal.NutrientGoalScreen
 import com.waqas.onboarding_presentation.weight.WeightScreen
 import com.waqas.testingmodulecompose.ui.theme.TempComposeTheme
-import com.waqas.testingmodulecompose.util.navigate
 import com.waqas.tracker_presentation.search.SearchScreen
 import com.waqas.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,39 +58,39 @@ class MainActivity : ComponentActivity() {
                         startDestination = if (shouldShowOnboarding) Route.WELCOME else Route.TRACKER_OVERVIEW
                     ) {
                         composable(Route.WELCOME) {
-                            WelcomeScreen(onNavigate = navController::navigate)
+                            WelcomeScreen(onNextClick = { navController.navigate(Route.GENDER) })
                         }
                         composable(Route.ACTIVITY) {
                             innerPadding.calculateTopPadding()
-                            ActivityLevelScreen(onNavigate = navController::navigate)
+                            ActivityLevelScreen(onNextClick = { navController.navigate(Route.GOAL) })
                         }
                         composable(Route.AGE) {
                             AgeScreen(
                                 scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate
+                                onNextClick = { navController.navigate(Route.HEIGHT) }
                             )
                         }
                         composable(Route.GENDER) {
-                            GenderScreen(onNavigate = navController::navigate)
+                            GenderScreen(onNextClick = { navController.navigate(Route.AGE) })
                         }
                         composable(Route.HEIGHT) {
                             HeightScreen(
                                 scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate
+                                onNextClick = { navController.navigate(Route.WEIGHT) }
                             )
                         }
                         composable(Route.WEIGHT) {
                             WeightScreen(
-                                onNavigate = navController::navigate,
+                                onNextClick = { navController.navigate(Route.ACTIVITY) },
                                 scaffoldState = scaffoldState
                             )
                         }
                         composable(Route.GOAL) {
-                            GoalScreen(onNavigate = navController::navigate)
+                            GoalScreen(onNextClick = { navController.navigate(Route.NUTRIENT_GOAL) })
                         }
                         composable(Route.NUTRIENT_GOAL) {
                             NutrientGoalScreen(
-                                onNavigate = navController::navigate,
+                                onNextClick = { navController.navigate(Route.TRACKER_OVERVIEW) },
                                 scaffoldState = scaffoldState
                             )
                         }
@@ -129,7 +127,13 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Route.TRACKER_OVERVIEW) {
-                            TrackerOverviewScreen(onNavigation = navController::navigate)
+                            TrackerOverviewScreen(onNavigateToSearch = { mealName, day, month, year ->
+                                navController.navigate(
+                                    Route.SEARCH + "/$mealName" + "/$day" + "/$month" + "/$year"
+                                )
+
+
+                            })
                         }
                     }
                 }
