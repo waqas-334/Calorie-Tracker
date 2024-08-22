@@ -15,6 +15,7 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -89,24 +90,25 @@ fun SearchScreen(
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(state.trackableFood) { foodUiState ->
+            items(state.trackableFood) { food ->
                 TrackableFoodItem(
-                    trackableFoodUiState = foodUiState,
+                    trackableFoodUiState = food,
                     onClick = {
-                        viewModel.onEvent(SearchEvent.OnToggleTrackableFood(foodUiState.food))
+                        viewModel.onEvent(SearchEvent.OnToggleTrackableFood(food.food))
                     },
                     onAmountChange = {
                         viewModel.onEvent(
                             SearchEvent.OnAmountForFoodChange(
-                                food = foodUiState.food,
+                                food = food.food,
                                 amount = it
                             )
                         )
                     },
                     onTrack = {
+                        keyboardController?.hide()
                         viewModel.onEvent(
                             SearchEvent.OnTrackFoodClick(
-                                food = foodUiState.food,
+                                food = food.food,
                                 mealType = MealType.fromString(mealName),
                                 date = LocalDate.of(year, month, dayOfMonth)
                             )

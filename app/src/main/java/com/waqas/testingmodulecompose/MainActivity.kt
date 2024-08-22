@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.waqas.core.domain.preferences.Preferences
 import com.waqas.core.navigation.Route
 import com.waqas.onboarding_presentation.WelcomeScreen
 import com.waqas.onboarding_presentation.activity.ActivityLevelScreen
@@ -31,12 +32,20 @@ import com.waqas.testingmodulecompose.util.navigate
 import com.waqas.tracker_presentation.search.SearchScreen
 import com.waqas.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+
+    @Inject
+    lateinit var preferences: Preferences
+
+
     @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
 //        enableEdgeToEdge()
         setContent {
             TempComposeTheme {
@@ -46,7 +55,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     scaffoldState = scaffoldState,
                 ) { innerPadding ->
-                    NavHost(navController = navController, startDestination = Route.WELCOME) {
+                    NavHost(
+                        navController = navController,
+                        startDestination = if (shouldShowOnboarding) Route.WELCOME else Route.TRACKER_OVERVIEW
+                    ) {
                         composable(Route.WELCOME) {
                             WelcomeScreen(onNavigate = navController::navigate)
                         }
