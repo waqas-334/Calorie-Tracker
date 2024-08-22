@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
@@ -28,7 +29,7 @@ import com.waqas.core.util.UiEvent
 import com.waqas.core_ui.LocalSpacing
 import com.waqas.tracker_domain.model.MealType
 import com.waqas.tracker_presentation.search.components.SearchTextField
-import kotlinx.coroutines.flow.collect
+import com.waqas.tracker_presentation.search.components.TrackableFoodItem
 import java.time.LocalDate
 
 @ExperimentalCoilApi
@@ -87,6 +88,51 @@ fun SearchScreen(
             }
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(state.trackableFood) { foodUiState ->
+                TrackableFoodItem(
+                    trackableFoodUiState = foodUiState,
+                    onClick = {
+                        viewModel.onEvent(SearchEvent.OnToggleTrackableFood(foodUiState.food))
+                    },
+                    onAmountChange = {
+                        viewModel.onEvent(
+                            SearchEvent.OnAmountForFoodChange(
+                                food = foodUiState.food,
+                                amount = it
+                            )
+                        )
+                    },
+                    onTrack = {
+                        viewModel.onEvent(
+                            SearchEvent.OnTrackFoodClick(
+                                food = foodUiState.food,
+                                mealType = MealType.fromString(mealName),
+                                date = LocalDate.of(year, month, dayOfMonth)
+                            )
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
+        }
     }
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            state.isSearching -> CircularProgressIndicator()
+            state.trackableFood.isEmpty() -> {
+                Text(
+                    text = stringResource(id = R.string.no_results),
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+    }
+
 }
