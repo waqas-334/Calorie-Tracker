@@ -1,8 +1,8 @@
 # Calorie Tracker Multi-module Android App
 
-[./meta-data/screen_recording.mov](Checkout the video available here)
+![Screen Recording](meta-data/screen_recording.gif)
 
-This app is built using
+## This app is built using
 
 - Kotlin
 - Jetpack Compose
