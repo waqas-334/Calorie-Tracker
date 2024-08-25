@@ -197,7 +197,8 @@ fun TrackableFoodItem(
                     Text(
                         text = stringResource(id = R.string.grams),
                         style = MaterialTheme.typography.body1,
-                        modifier = Modifier.alignBy(LastBaseline)
+                        modifier = Modifier
+                            .alignBy(LastBaseline)
                     )
 
                 }

@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -35,7 +36,7 @@ fun SearchTextField(
     modifier: Modifier = Modifier,
     hint: String = stringResource(id = com.waqas.core.R.string.search),
     shouldShowHint: Boolean = false,
-    onFocusChanged: (FocusState) -> Unit
+    onFocusChanged: (FocusState) -> Unit,
 ) {
 
     val spacing = LocalSpacing.current
@@ -63,6 +64,7 @@ fun SearchTextField(
                 .padding(spacing.spaceMedium)
                 .padding(end = spacing.spaceMedium)
                 .onFocusChanged { onFocusChanged(it) }
+                .testTag("search_textfield"),
         )
 
         if (shouldShowHint) {

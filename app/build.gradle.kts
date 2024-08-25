@@ -16,7 +16,7 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.waqas.testingmodulecompose.HiltTestRunner"
     }
 
     buildTypes {
@@ -40,6 +40,17 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE-notice.md",
+                "META-INF/LICENSE.md",
+                "META-INF/NOTICE.md",
+                "META-INF/NOTICE.txt"
+                // Add more excludes if needed
+            )
+        }
     }
 }
 
